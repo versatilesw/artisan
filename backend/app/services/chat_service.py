@@ -44,23 +44,16 @@ def update_message(db: Session, message_id: int, message: schemas.MessageUpdate)
     db.refresh(db_message)
     
     # Generate new bot response
-    old_bot_message = db.query(models.Message).filter(
+    bot_message = db.query(models.Message).filter(
         models.Message.parent_message_id == message_id
     ).first()
     
-    if old_bot_message:
-        db.delete(old_bot_message)
-        
     bot_response = generate_bot_response(message.content)
-    bot_message = models.Message(
-        content=bot_response,
-        sender="bot",
-        parent_message_id=message_id
-    )
-    db.add(bot_message)
+    bot_message.content = bot_response
     db.commit()
-    
-    return db_message
+    db.refresh(bot_message)
+
+    return bot_message
 
 def delete_message(db: Session, message_id: int):
     db_message = db.query(models.Message).filter(models.Message.id == message_id).first()
