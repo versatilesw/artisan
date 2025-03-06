@@ -81,10 +81,10 @@ The API will be available at `http://localhost:8000`. API documentation can be a
 
 2. Start the development server:
    ```bash
-   npm run dev
+   npm run start
    ```
 
-The frontend will be available at `http://localhost:5173`.
+The frontend will be available at `http://localhost:3000`.
 
 ## Testing
 

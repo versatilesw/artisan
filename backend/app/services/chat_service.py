@@ -53,7 +53,7 @@ def update_message(db: Session, message_id: int, message: schemas.MessageUpdate)
     db.commit()
     db.refresh(bot_message)
 
-    return bot_message
+    return db_message
 
 def delete_message(db: Session, message_id: int):
     db_message = db.query(models.Message).filter(models.Message.id == message_id).first()
