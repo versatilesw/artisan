@@ -45,3 +45,7 @@
     @apply bg-white border border-chat-border;
   }
 }
+
+.chat-panel {
+  max-height: calc(100vh - 300px);
+}

@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routes import chat
 from .database import Base, engine
 from . import models  # Import models to ensure they are registered with SQLAlchemy
+from .init_db import init_database
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -20,6 +21,7 @@ app.add_middleware(
 
 # Include chat routes
 app.include_router(chat.router, prefix="/api", tags=["chat"])
+init_database()
 
 @app.get("/")
 async def root():

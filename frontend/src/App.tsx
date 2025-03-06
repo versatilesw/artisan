@@ -85,7 +85,7 @@ function App() {
         </div>
         {/* Chat Area */}
         <div className="flex-1 flex flex-col">
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 overflow-y-auto p-6 chat-panel">
             <div className="mx-auto space-y-6">
               {messages.map((message) => (
                 <ChatMessage

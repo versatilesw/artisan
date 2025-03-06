@@ -77,22 +77,25 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
             )} */}
           </div>
           {isBot ? (
-            <div className="flex gap-2 mt-2">
-              <button 
-                onClick={handleCopy} 
-                className="p-1 hover:bg-gray-200 rounded transition-colors"
-                title="Copy message"
-              >
-                <img src="/copy.svg" alt="Copy" className="w-4 h-4" />
-              </button>
-              <button 
-                onClick={() => onRegenerate(message.id)} 
-                className="p-1 hover:bg-gray-200 rounded transition-colors"
-                title="Regenerate response"
-              >
-                <img src="/refresh.svg" alt="Refresh" className="w-4 h-4" />
-              </button>
-            </div>
+            message.id ?
+            (
+              <div className="flex gap-2 mt-2">
+                <button 
+                  onClick={handleCopy} 
+                  className="p-1 hover:bg-gray-200 rounded transition-colors"
+                  title="Copy message"
+                >
+                  <img src="/copy.svg" alt="Copy" className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={() => onRegenerate(message.id)} 
+                  className="p-1 hover:bg-gray-200 rounded transition-colors"
+                  title="Regenerate response"
+                >
+                  <img src="/refresh.svg" alt="Refresh" className="w-4 h-4" />
+                </button>
+              </div>
+            ) : null
           ) :
           (
           <div className="flex gap-2 mt-2">
