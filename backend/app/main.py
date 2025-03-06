@@ -12,7 +12,7 @@ app = FastAPI(title="Artisan Chatbot API")
 # Configure CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:5174"],  # Support both Vite ports
+    allow_origins=["http://localhost:3000"],  # Allow Create React App default port
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
