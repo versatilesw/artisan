@@ -59,8 +59,13 @@ function App() {
     handleSendMessage(inputMessage);
   };
 
-  const handleRegenerate = (id: number) => {
-    console.log('Regenerated:', id);
+  const handleRegenerate = async (id: number) => {
+    try {
+      await chatService.regenerateMessage(id);
+      await loadMessages(); // Reload to get new bot response
+    } catch (error) {
+      console.error('Failed to edit message:', error);
+    }
   };
 
   return (

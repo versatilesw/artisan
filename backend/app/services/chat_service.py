@@ -81,6 +81,19 @@ def delete_message(db: Session, message_id: int):
     db.commit()
     return {"message": "Message deleted successfully"}
 
+def regenerate_message(db: Session, message_id: int):
+    bot_message = db.query(models.Message).filter(models.Message.id == message_id).first()
+    if not bot_message:
+        raise HTTPException(status_code=404, detail="Message not found")
+    user_message = db.query(models.Message).filter(models.Message.id == bot_message.parent_message_id).first()
+        
+    bot_response = generate_bot_response(user_message.content)
+    # Update message
+    bot_message.content = bot_response
+    db.commit()
+    db.refresh(bot_message)
+    return bot_message
+
 def generate_bot_response(user_message: str) -> str:
     # Placeholder for actual chatbot logic
     # This will be enhanced with actual knowledge base from Artisan website

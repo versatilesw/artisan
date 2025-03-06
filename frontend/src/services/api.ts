@@ -24,7 +24,7 @@ export const chatService = {
     return response.data;
   },
 
-  updateMessage: async (id: number, content: string): Promise<Message> => {
+  updateMessage: async (id: number, content?: string): Promise<Message> => {
     const response = await api.put<Message>(`/messages/${id}`, {
       content,
     });
@@ -33,5 +33,9 @@ export const chatService = {
 
   deleteMessage: async (id: number): Promise<void> => {
     await api.delete(`/messages/${id}`);
+  },
+
+  regenerateMessage: async (id: number): Promise<void> => {
+    await api.post(`/messages/regenerate/${id}`);
   },
 };

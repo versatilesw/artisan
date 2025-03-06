@@ -22,3 +22,7 @@ async def update_message(message_id: int, message: MessageUpdate, db: Session = 
 @router.delete("/messages/{message_id}")
 async def delete_message(message_id: int, db: Session = Depends(get_db)):
     return chat_service.delete_message(db=db, message_id=message_id)
+
+@router.post("/messages/regenerate/{message_id}", response_model=MessageResponse)
+async def regenerate_message(message_id: int, db: Session = Depends(get_db)):
+    return chat_service.regenerate_message(db=db, message_id=message_id)
