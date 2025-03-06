@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChatMessage } from './components/ChatMessage';
 import { chatService } from './services/api';
 import type { Message } from './types/message';
@@ -7,6 +7,7 @@ function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const messageHistoryRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     loadMessages();
@@ -21,6 +22,12 @@ function App() {
     }
   };
 
+  const scrollToBottom = () => {
+    if (messageHistoryRef.current) {
+      messageHistoryRef.current.scrollTop = messageHistoryRef.current.scrollHeight;
+    }
+  };
+
   const handleSendMessage = async (content: string) => {
     if (!content.trim()) return;
 
@@ -28,6 +35,9 @@ function App() {
     try {
       await chatService.sendMessage(content);
       await loadMessages(); // Reload to get bot response
+      setTimeout(() => {
+        scrollToBottom();
+      }, 0)
     } catch (error) {
       console.error('Failed to send message:', error);
     } finally {
@@ -85,7 +95,7 @@ function App() {
         </div>
         {/* Chat Area */}
         <div className="flex-1 flex flex-col">
-          <div className="flex-1 overflow-y-auto p-6 chat-panel">
+          <div className="flex-1 overflow-y-auto p-6 chat-panel" ref={messageHistoryRef}>
             <div className="mx-auto space-y-6">
               {messages.map((message) => (
                 <ChatMessage
