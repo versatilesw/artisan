@@ -14,6 +14,7 @@ A full-stack chatbot application that allows users to interact with a knowledge 
 ## Tech Stack
 
 ### Backend
+
 - Python 3.x
 - FastAPI
 - SQLAlchemy (SQLite database)
@@ -21,6 +22,7 @@ A full-stack chatbot application that allows users to interact with a knowledge 
 - Pytest for testing
 
 ### Frontend
+
 - React 18
 - TypeScript
 - Vite
@@ -53,6 +55,7 @@ artisan/
 ### Backend Setup
 
 1. Create a Python virtual environment:
+
    ```bash
    cd backend
    python -m venv venv
@@ -60,6 +63,7 @@ artisan/
    ```
 
 2. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -74,6 +78,7 @@ The API will be available at `http://localhost:8000`. API documentation can be a
 ### Frontend Setup
 
 1. Install dependencies:
+
    ```bash
    cd frontend
    npm install
@@ -91,6 +96,7 @@ The frontend will be available at `http://localhost:3000`.
 ### Backend Tests
 
 Run the backend tests using pytest:
+
 ```bash
 cd backend
 python -m pytest tests/ -v
@@ -108,7 +114,7 @@ python -m pytest tests/ -v
 - [x] Backend API implementation
 - [x] Database models and persistence
 - [x] API endpoint testing
-- [ ] Frontend implementation
-- [ ] Frontend testing
-- [ ] Integration testing
+- [x] Frontend implementation
+- [x] Frontend testing
+- [x] Integration testing
 - [ ] Production deployment
